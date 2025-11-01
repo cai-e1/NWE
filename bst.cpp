@@ -12,15 +12,15 @@ BST<D,K>::BST(){
 };
 
 
-// template <typename D, typename K>
-// BST<D,K>::~BST(void){
-//     Node* x = root;
-//     if (x !=nullptr) {
-//         ~BST(x.left);
-//         delete [] x.key;
-//         ~BST (x.right);
-//     }
-// };
+template <typename D, typename K>
+BST<D,K>::~BST(){
+    // Node* x = root;
+    // if (x !=nullptr) {
+    //     ~BST(x->left);
+    //     delete [] x->key;
+    //     ~BST(x->right);
+    clear(root);    
+};
 
 
 // template <typename D, typename K>
@@ -36,35 +36,40 @@ BST<D,K>::BST(){
 
 template <typename D, typename K>
 bool BST<D,K>::empty(){
-    return (root == nullptr);
+    return (this->root == nullptr);
 };
 
 
 template <typename D, typename K>
 void BST<D,K>::insert(D data, K key){
     Node* z = new Node(data, key);
-    if (this->empty()){
-        root = z;
-    }
-    
     Node* y = nullptr;
     Node* x = root;
 
+    if (this->empty()) {
+        root = z;
+    }
+    
     while (x != nullptr){
         y = x;
         if (z->key < x->key){
             x = x->left;
         }
-        else {x = x->right;}
+        else {
+            x = x->right;
+        }
+    }
+
     z->p = y;
+
     if (y == nullptr){
         root = z;
     }
+
     else if (z->key < y->key){
         y->left = z;
     }
-    else {y->right = z;}
-    }
+    else {y->right = z;}   
 };
 
 template <typename D, typename K>
@@ -89,10 +94,43 @@ template <typename D, typename K>
 K BST<D,K>::successor(K key){};
 
 template <typename D, typename K>
-string BST<D,K>::in_order(){};
+string BST<D,K>::in_order(){
+    stringstream ss;
+
+    ss << "hi";
+
+    return ss.str();
+};
 
 template <typename D, typename K>
 void BST<D,K>::trim (K low, K high){};
 
-// template <typename D, typename K>
-// string BST<D,K>::to_string (){};
+template <typename D, typename K>
+string BST<D,K>::to_string (){
+    string ss;
+
+    ss = print_strings(root);
+
+    return ss;
+};
+
+template <typename D, typename K>
+void BST<D, K>::clear(Node* node) {
+    if (node != nullptr) {
+        clear(node->left);
+        clear(node->right);
+        delete node;
+    }
+};
+
+template <typename D, typename K>
+string BST<D, K>::print_strings(Node* node) {
+    stringstream ss;
+    if (node != nullptr) {
+        ss << print_strings(node->left) << " ";
+        ss << print_strings(node->right) << " ";
+        ss << node->key << " ";
+    }
+
+    return ss.str();
+};

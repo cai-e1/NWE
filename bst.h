@@ -29,7 +29,7 @@ private:
 public:
 
     BST();
-    ~BST(void);
+    ~BST();
     BST (const BST<D,K> & rbst);
 
     bool empty ();
@@ -43,6 +43,8 @@ public:
     K successor(K key);
     string in_order();
     void trim (K low, K high);
+    void clear(Node* node);
+    string print_strings(Node* node);
 
     string to_string ();
 };
