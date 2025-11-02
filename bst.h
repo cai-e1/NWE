@@ -2,6 +2,8 @@
 #ifndef BST_H
 #define BST_H
 #include <iostream>
+#include <stdexcept>
+
 
 using namespace std;
 
@@ -25,6 +27,8 @@ private:
         };
     };
     Node* root;
+    D min_data_rec(Node* n, D best);
+    D max_data_rec(Node* n, D best);
 
 public:
 
