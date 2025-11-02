@@ -2,6 +2,7 @@
 #include <sstream>
 #include "bst.h"
 #include <string>
+#include <queue>
 
 
 using namespace std;
@@ -110,6 +111,7 @@ string BST<D,K>::to_string (){
     string ss;
 
     ss = print_strings(root);
+    ss.pop_back();
 
     return ss;
 };
@@ -126,10 +128,19 @@ void BST<D, K>::clear(Node* node) {
 template <typename D, typename K>
 string BST<D, K>::print_strings(Node* node) {
     stringstream ss;
-    if (node != nullptr) {
-        ss << print_strings(node->left) << " ";
-        ss << print_strings(node->right) << " ";
-        ss << node->key << " ";
+    queue<Node*> temp;
+    temp.push(node);
+
+    while (!temp.empty()) {
+        Node* current = temp.front();
+        temp.pop();
+        ss << current->key << " ";
+        if (current->left != nullptr) {
+            temp.push(current->left);
+        } 
+        if (current->right != nullptr) {
+            temp.push(current->right);
+        }
     }
 
     return ss.str();
