@@ -153,7 +153,7 @@ K BST<D,K>::min_key() {
 
 template <typename D, typename K>
 K BST<D,K>::successor(K key){
-    Node* x = search_key(k);
+    Node* x = search_key(key);
 
     if (x == nullptr || x->key == max_key()) {
         return K();
@@ -290,7 +290,8 @@ void BST<D,K>::remove_helper(Node* temp){
 
     //scenario 2 where there are multiple children
     else{
-        Node* replace = successor(temp->key);
+        K successor_key = successor(temp->key);
+        Node* replace = search_key(successor_key);
         Node* replace_parent = replace->p;
 
         temp->key = replace->key;
