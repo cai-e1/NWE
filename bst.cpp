@@ -301,6 +301,7 @@ void BST<D,K>::remove_helper(Node* temp){
             replace_parent->left = replace->right;
             replace->right->p = replace_parent;
         }
+        else {replace_parent->left = nullptr;}
     }
 }
 

@@ -110,6 +110,7 @@ void test_remove()
         {
             cout << "Incorrect result of removing 7. Expected 5 2 8 1 3 6 9 4 10 but got : " << bst_str << endl;
         }
+        
     }
     catch (exception &e)
     {
