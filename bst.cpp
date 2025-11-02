@@ -211,7 +211,7 @@ void BST<D,K>::remove_helper(Node* temp){
 
     //scenario 2 where there are multiple children
     else{
-        Node* replace = temp.successor(temp->key);
+        Node* replace = successor(temp->key);
         Node* replace_parent = replace->p;
 
         temp->key = replace->key;
