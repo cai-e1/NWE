@@ -97,16 +97,58 @@ void BST<D,K>::remove(K k){
 };
 
 template <typename D, typename K>
-D BST<D,K>::max_data(){};
+D BST<D,K>::min_data_rec(Node* n, D best) {
+    if (n == nullptr) return best;
+    if (n->data < best) best = n->data;
+    best = min_data_rec(n->left,  best);
+    best = min_data_rec(n->right, best);
+    return best;
+}
 
 template <typename D, typename K>
-K BST<D,K>::max_key(){};
+D BST<D,K>::max_data_rec(Node* n, D best) {
+    if (n == nullptr) return best;
+    if (best < n->data) best = n->data;
+    best = max_data_rec(n->left,  best);
+    best = max_data_rec(n->right, best);
+    return best;
+}
 
 template <typename D, typename K>
-D BST<D,K>::min_data(){};
+D BST<D,K>::max_data() {
+    if (root == nullptr) {
+        throw std::runtime_error("max_data() called on an empty BST");
+    }
+    return max_data_rec(root, root->data);
+}
 
 template <typename D, typename K>
-K BST<D,K>::min_key(){};
+K BST<D,K>::max_key() {
+    if (root == nullptr) { throw "max_key() called on an empty BST"; }
+    Node* cur = root;
+    while (cur->right != nullptr) {
+        cur = cur->right;
+    }
+    return cur->key;
+}
+
+template <typename D, typename K>
+D BST<D,K>::min_data() {
+    if (root == nullptr) {
+        throw std::runtime_error("min_data() called on an empty BST");
+    }
+    return min_data_rec(root, root->data);
+}
+
+template <typename D, typename K>
+K BST<D,K>::min_key() {
+    if (root == nullptr) { throw "min_key() called on an empty BST"; }
+    Node* cur = root;
+    while (cur->left != nullptr) {
+        cur = cur->left;
+    }
+    return cur->key;
+}
 
 template <typename D, typename K>
 K BST<D,K>::successor(K key){};
