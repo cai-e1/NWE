@@ -93,7 +93,8 @@ D BST<D,K>::get(K k){
 template <typename D, typename K>
 void BST<D,K>::remove(K k){
     Node* temp = search(k);
-    remove_helper(temp);
+    if (temp!=nullptr){
+        remove_helper(temp);}
 };
 
 template <typename D, typename K>
@@ -164,7 +165,7 @@ string BST<D, K>::print_strings(Node* node) {
 };
 
 template <typename D, typename K>
-K BST<D,K>::search_key(K k){
+typename BST<D,K>::Node* BST<D,K>::search_key(K k){
     Node* temp = root;
     while (temp!=nullptr){
         if (temp->key == k){
@@ -177,7 +178,8 @@ K BST<D,K>::search_key(K k){
             temp = temp->left;
         }
     }
-    return (K());
+    //if it reaches here, no node with key k was found
+    return nullptr;
 }
 
 template <typename D, typename K>

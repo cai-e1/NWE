@@ -36,7 +36,7 @@ public:
     void insert (D data, K key);
     D get (K k);
     void remove (K k);
-    K search_key(K k);
+    Node* search_key(K k);
     void remove_helper (Node* node);
     D max_data();
     K max_key();
