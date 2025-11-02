@@ -92,7 +92,7 @@ D BST<D,K>::get(K k){
 
 template <typename D, typename K>
 void BST<D,K>::remove(K k){
-    Node* temp = search(k);
+    Node* temp = search_key(k);
     if (temp!=nullptr){
         remove_helper(temp);}
 };
@@ -152,15 +152,21 @@ K BST<D,K>::min_key() {
 }
 
 template <typename D, typename K>
-K BST<D,K>::successor(K key){};
+K BST<D,K>::successor(K key){
+    Node* curr = search_key(k);
+
+    if (curr->right != nullptr) {
+    }
+};
 
 template <typename D, typename K>
 string BST<D,K>::in_order(){
-    stringstream ss;
+    string ss;
 
-    ss << "hi";
+    ss = inorder_print_string(root);
+    ss.pop_back();
 
-    return ss.str();
+    return ss;
 };
 
 template <typename D, typename K>
@@ -205,6 +211,20 @@ string BST<D, K>::print_strings(Node* node) {
 
     return ss.str();
 };
+
+template <typename D, typename K>
+string BST<D, K>::inorder_print_string(Node* node) {
+    stringstream ss;
+
+    Node* curr = node;
+    if (curr != nullptr) {
+        ss << curr->key << " ";
+        inorder_print_string(curr->left);
+        inorder_print_string(curr->right); 
+    }
+
+    return ss.str();
+}
 
 template <typename D, typename K>
 typename BST<D,K>::Node* BST<D,K>::search_key(K k){

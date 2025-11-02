@@ -51,6 +51,7 @@ public:
     void trim (K low, K high);
     void clear(Node* node);
     string print_strings(Node* node);
+    string inorder_print_string(Node* node);
 
     string to_string ();
 };
