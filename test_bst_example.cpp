@@ -71,28 +71,28 @@ void test_insert()
     }
 }
 
-// void test_get()
-// {
-//     try
-//     {
-//         BST<string, int> bst;
-//         string val = bst.get(0);
-//         if (val != "")
-//         {
-//             cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
-//         }
-//         bst.insert("one", 1);
-//         val = bst.get(1);
-//         if (val != "one")
-//         {
-//             cout << "Incorrect get result. Expected \"one\" but got : " << val << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in getting data from bst : " << e.what() << endl;
-//     }
-// }
+void test_get()
+{
+    try
+    {
+        BST<string, int> bst;
+        string val = bst.get(0);
+        if (val != "")
+        {
+            cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
+        }
+        bst.insert("one", 1);
+        val = bst.get(1);
+        if (val != "one")
+        {
+            cout << "Incorrect get result. Expected \"one\" but got : " << val << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in getting data from bst : " << e.what() << endl;
+    }
+}
 
 // void test_remove()
 // {
@@ -355,7 +355,7 @@ int main()
 
     test_empty();
     test_insert();
-    // test_get();
+    test_get();
     // test_remove();
     // test_max_data();
     // test_max_key();

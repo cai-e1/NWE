@@ -34,8 +34,10 @@ public:
 
     bool empty ();
     void insert (D data, K key);
-    D get (K key);
-    void remove (K key);
+    D get (K k);
+    void remove (K k);
+    K search_key(K k);
+    void remove_helper (Node* node);
     D max_data();
     K max_key();
     D min_data();

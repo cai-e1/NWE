@@ -74,10 +74,27 @@ void BST<D,K>::insert(D data, K key){
 };
 
 template <typename D, typename K>
-D BST<D,K>::get(K key){};
+D BST<D,K>::get(K k){
+    Node* temp = root;
+    while (temp!=nullptr){
+        if (temp->key == k){
+            return (temp->data);
+        }
+        else if (temp->key < k){
+            temp = temp->right;
+        }
+        else if (temp->key > k){
+            temp = temp->left;
+        }
+    }
+    return (D());
+};
 
 template <typename D, typename K>
-void BST<D,K>::remove(K key){};
+void BST<D,K>::remove(K k){
+    Node* temp = search(k);
+    remove_helper(temp);
+};
 
 template <typename D, typename K>
 D BST<D,K>::max_data(){};
@@ -145,3 +162,65 @@ string BST<D, K>::print_strings(Node* node) {
 
     return ss.str();
 };
+
+template <typename D, typename K>
+K BST<D,K>::search_key(K k){
+    Node* temp = root;
+    while (temp!=nullptr){
+        if (temp->key == k){
+            return (temp);
+        }
+        else if (temp->key < k){
+            temp = temp->right;
+        }
+        else if (temp->key > k){
+            temp = temp->left;
+        }
+    }
+    return (K());
+}
+
+template <typename D, typename K>
+void BST<D,K>::remove_helper(Node* temp){
+    //no children
+    if ((temp->left ==nullptr)&&(temp->right==nullptr)){
+        if (temp->p == nullptr){root = nullptr;}
+        else if (temp == temp->p->left){
+            temp->p->left = nullptr;
+        }
+        else{
+            temp->p->right = nullptr;
+        }
+    }
+
+    //scenario 1 where the node that is being deleted only has one child
+    else if ((temp->left == nullptr)&&(temp->right!=nullptr)){
+        if (temp->p == nullptr){root = temp->right;}
+        else{temp->p->right = temp->right;}
+        temp->right->p = temp->p;
+        delete temp;
+    }
+    
+    else if ((temp->right == nullptr)&&(temp->left!=nullptr)){
+        if (temp->p == nullptr){root = temp->left;}
+        else{temp->p->left = temp->left;}
+        temp->left->p = temp->p;
+        delete temp;
+    }
+    
+
+    //scenario 2 where there are multiple children
+    else{
+        Node* replace = temp.successor(temp->key);
+        Node* replace_parent = replace->p;
+
+        temp->key = replace->key;
+        temp->data = replace->data;
+
+        if (replace->right != nullptr){
+            replace_parent->left = replace->right;
+            replace->right->p = replace_parent;
+        }
+    }
+}
+
