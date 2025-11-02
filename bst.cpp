@@ -153,9 +153,24 @@ K BST<D,K>::min_key() {
 
 template <typename D, typename K>
 K BST<D,K>::successor(K key){
-    Node* curr = search_key(k);
+    Node* x = search_key(k);
 
-    if (curr->right != nullptr) {
+    if (x == nullptr || x->key == max_key()) {
+        return K();
+    }
+    else if (x->right != nullptr) {
+        x = x->right;
+        while (x->left != nullptr) {
+            x = x->left;
+        }
+        return x->key;
+    } else {
+        Node* y = x->p;
+        while (y != nullptr & x == y->right) {
+            x = y;
+            y = y->p; 
+        }
+        return y->key;
     }
 };
 
