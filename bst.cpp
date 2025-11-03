@@ -178,20 +178,22 @@ template <typename D, typename K>
 string BST<D,K>::in_order(){
     string ss;
 
-    ss = inorder_print_string(root);
+    ss = inorder_helper(root);
     ss.pop_back();
 
     return ss;
 };
 
 template <typename D, typename K>
-void BST<D,K>::trim (K low, K high){};
+void BST<D,K>::trim (K low, K high){
+    root = trim_helper(root, low, high);
+};
 
 template <typename D, typename K>
-string BST<D,K>::to_string (){
+string BST<D,K>::to_string(){
     string ss;
 
-    ss = print_strings(root);
+    ss = to_string_helper(root);
     ss.pop_back();
 
     return ss;
@@ -207,7 +209,7 @@ void BST<D, K>::clear(Node* node) {
 };
 
 template <typename D, typename K>
-string BST<D, K>::print_strings(Node* node) {
+string BST<D, K>::to_string_helper(Node* node) {
     stringstream ss;
     queue<Node*> temp;
     temp.push(node);
@@ -228,14 +230,14 @@ string BST<D, K>::print_strings(Node* node) {
 };
 
 template <typename D, typename K>
-string BST<D, K>::inorder_print_string(Node* node) {
+string BST<D, K>::inorder_helper(Node* node) {
     stringstream ss;
 
     Node* curr = node;
     if (curr != nullptr) {
         ss << curr->key << " ";
-        inorder_print_string(curr->left);
-        inorder_print_string(curr->right); 
+        inorder_helper(curr->left);
+        inorder_helper(curr->right); 
     }
 
     return ss.str();
@@ -305,3 +307,21 @@ void BST<D,K>::remove_helper(Node* temp){
     }
 }
 
+template <typename D, typename K>
+typename BST<D,K>::Node* BST<D, K>::trim_helper(Node* node, K low, K high){
+    
+    node->left = trim_helper(node->left, low, high);
+    node->right = trim_helper(node->right, low, high);
+
+    if (node->key < low) {
+        Node* right_subtree = node->right;
+        delete node;
+        return right_subtree;
+    } else if (node->key > high) {
+        Node* left_subtree = node->left;
+        delete node;
+        return left_subtree;
+    } else {
+        return node;
+    }
+}

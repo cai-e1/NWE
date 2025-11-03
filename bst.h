@@ -4,19 +4,20 @@
 #include <iostream>
 #include <stdexcept>
 
-
 using namespace std;
 
 template <typename D, typename K>
 class BST{
 private: 
     struct Node{
+        // Node Attributes
         D data;
         K key;
         Node* p;
         Node* left;
         Node* right;
 
+        // Node Constructors
         Node() : data(D()), key (K()) {};
         Node(D d, K k) {
             data = d;
@@ -26,22 +27,27 @@ private:
             right = nullptr;
         };
     };
+
+    // BST Atrributes
     Node* root;
+
+    // BST Min/Max Recursive Functions
     D min_data_rec(Node* n, D best);
     D max_data_rec(Node* n, D best);
 
 public:
 
+    // BST Constructors & Destructor
     BST();
     ~BST();
     BST (const BST<D,K> & rbst);
 
+    // BST Methods
     bool empty ();
     void insert (D data, K key);
     D get (K k);
     void remove (K k);
     Node* search_key(K k);
-    void remove_helper (Node* node);
     D max_data();
     K max_key();
     D min_data();
@@ -49,15 +55,16 @@ public:
     K successor(K key);
     string in_order();
     void trim (K low, K high);
-    void clear(Node* node);
-    string print_strings(Node* node);
-    string inorder_print_string(Node* node);
 
+    // BST Helper Functions
+    Node* trim_helper(Node* node, K low, K high);
+    void remove_helper (Node* node);
+    string to_string_helper(Node* node);
+    string inorder_helper(Node* node);
+    void clear(Node * node);
+
+    // to_string() method
     string to_string ();
 };
-
-
-
-
 
 #endif
