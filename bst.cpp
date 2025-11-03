@@ -295,7 +295,7 @@ string BST<D, K>::inorder_helper(Node* node)
     stringstream ss;
 
     Node* curr = node;
-    while (curr != nullptr) {
+    if (curr != nullptr) {
         inorder_helper(curr->left);
         ss << curr->key << " ";
         inorder_helper(curr->right); 
