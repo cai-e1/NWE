@@ -24,15 +24,17 @@ BST<D,K>::~BST(){
 };
 
 
-// template <typename D, typename K>
-// BST<D,K>::BST (const BST<D,K> & rbst){
+template <typename D, typename K>
+BST<D,K>::BST (const BST<D,K> & rbst){
 //     Node* x = root;
 //     if x !=nullptr {
 //         BST(x.left);
 //         delete [] x.key;
 //         BST (x.right);
 //     }
-// };
+    root = rbst.root;
+
+};
 
 
 template <typename D, typename K>
@@ -234,9 +236,9 @@ string BST<D, K>::inorder_helper(Node* node) {
     stringstream ss;
 
     Node* curr = node;
-    if (curr != nullptr) {
-        ss << curr->key << " ";
+    while (curr != nullptr) {
         inorder_helper(curr->left);
+        ss << curr->key << " ";
         inorder_helper(curr->right); 
     }
 
@@ -309,7 +311,11 @@ void BST<D,K>::remove_helper(Node* temp){
 
 template <typename D, typename K>
 typename BST<D,K>::Node* BST<D, K>::trim_helper(Node* node, K low, K high){
-    
+
+    if (node == nullptr) {
+        return nullptr;
+    }
+
     node->left = trim_helper(node->left, low, high);
     node->right = trim_helper(node->right, low, high);
 

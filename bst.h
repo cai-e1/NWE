@@ -40,7 +40,7 @@ public:
     // BST Constructors & Destructor
     BST();
     ~BST();
-    BST (const BST<D,K> & rbst);
+    BST(const BST<D,K>& rbst);
 
     // BST Methods
     bool empty ();

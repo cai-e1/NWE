@@ -239,72 +239,72 @@ void test_successor()
     }
 }
 
-// void test_in_order()
-// {
-//     try
-//     {
-//         BST<string, int> bst;
-//         for (int i = 1; i <= 10; i++)
-//         {
-//             bst.insert("some data", i);
-//         }
-//         string bst_str = bst.in_order();
-//         if (bst_str != "1 2 3 4 5 6 7 8 9 10")
-//         {
-//             cout << "Incorrect in_order result after inserting keys 1-10 in order. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
-//         }
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert("some data", vals[i]);
-//         }
-//         bst_str = balanced_bst.in_order();
-//         if (bst_str != "1 2 3 4 5 6 7 8 9 10")
-//         {
-//             cout << "Incorrect in_order result after inserting keys {5, 2, 7, 1, 3, 4, 6, 9, 8, 10}. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error getting keys in_order from bst : " << e.what() << endl;
-//     }
-// }
+void test_in_order()
+{
+    try
+    {
+        BST<string, int> bst;
+        for (int i = 1; i <= 10; i++)
+        {
+            bst.insert("some data", i);
+        }
+        string bst_str = bst.in_order();
+        if (bst_str != "1 2 3 4 5 6 7 8 9 10")
+        {
+            cout << "Incorrect in_order result after inserting keys 1-10 in order. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
+        }
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert("some data", vals[i]);
+        }
+        bst_str = balanced_bst.in_order();
+        if (bst_str != "1 2 3 4 5 6 7 8 9 10")
+        {
+            cout << "Incorrect in_order result after inserting keys {5, 2, 7, 1, 3, 4, 6, 9, 8, 10}. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error getting keys in_order from bst : " << e.what() << endl;
+    }
+}
 
-// void test_trim()
-// {
-//     try
-//     {
-//         BST<string, int> bst;
-//         int vals[3] = {1, 0, 2};
-//         for (int i = 0; i < 3; i++)
-//         {
-//             bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         bst.trim(1, 2);
-//         string bst_str = bst.to_string();
-//         if (bst_str != "1 2")
-//         {
-//             cout << "Incorrect tree after trimming 1 0 2 with low=1, high=2. Expected 1 2 but got : " << bst_str << endl;
-//         }
-//         BST<string, int> bst2;
-//         int vals2[5] = {3, 0, 4, 2, 1};
-//         for (int i = 0; i < 5; i++)
-//         {
-//             bst2.insert(to_string(vals2[i]) + " data", vals2[i]);
-//         }
-//         bst2.trim(1, 3);
-//         bst_str = bst2.to_string();
-//         if (bst_str != "3 2 1")
-//         {
-//             cout << "Incorrect tree after trimming 3 0 4 2 1 with low=1, high=3. Expected 3 2 1 but got : " << bst_str << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in trimming the bst : " << e.what() << endl;
-//     }
-// }
+void test_trim()
+{
+    try
+    {
+        BST<string, int> bst;
+        int vals[3] = {1, 0, 2};
+        for (int i = 0; i < 3; i++)
+        {
+            bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        bst.trim(1, 2);
+        string bst_str = bst.to_string();
+        if (bst_str != "1 2")
+        {
+            cout << "Incorrect tree after trimming 1 0 2 with low=1, high=2. Expected 1 2 but got : " << bst_str << endl;
+        }
+        BST<string, int> bst2;
+        int vals2[5] = {3, 0, 4, 2, 1};
+        for (int i = 0; i < 5; i++)
+        {
+            bst2.insert(to_string(vals2[i]) + " data", vals2[i]);
+        }
+        bst2.trim(1, 3);
+        bst_str = bst2.to_string();
+        if (bst_str != "3 2 1")
+        {
+            cout << "Incorrect tree after trimming 3 0 4 2 1 with low=1, high=3. Expected 3 2 1 but got : " << bst_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in trimming the bst : " << e.what() << endl;
+    }
+}
 
 void test_binhex()
 {
@@ -363,9 +363,9 @@ int main()
     test_max_key();
     test_min_data();
     test_min_key();
-    // test_successor();
-    // test_in_order();
-    // test_trim();
+    test_successor();
+    test_in_order();
+    test_trim();
     test_binhex();
 
     cout << "Testing completed" << endl;
