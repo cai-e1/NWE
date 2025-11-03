@@ -120,7 +120,7 @@ void BST<D,K>::remove(K k)
 };
 
 template <typename D, typename K>
-K BST<D,K>::max_data()
+D BST<D,K>::max_data()
 /* Pre:  Tree is non-empty; K supports operator<.
  * Post: Returns the data associated with the maximum key. Throws if tree is empty. */
 {
@@ -146,7 +146,7 @@ K BST<D,K>::max_key()
 }
 
 template <typename D, typename K>
-K BST<D,K>::min_data()
+D BST<D,K>::min_data()
 /* Pre:  Tree is non-empty; K supports operator>.
  * Post: Returns the data associated with the minimum key. Throws if tree is empty. */
 {
