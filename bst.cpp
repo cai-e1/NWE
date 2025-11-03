@@ -120,38 +120,16 @@ void BST<D,K>::remove(K k)
 };
 
 template <typename D, typename K>
-D BST<D,K>::min_data_rec(Node* n, D best)
-/* Pre:  n is a pointer to a node in this BST (or nullptr). D supports operator<.
- * Post: Returns the minimum value among data fields in the subtree rooted at n (or best if n == nullptr). Does not modify the tree. */
+K BST<D,K>::max_data()
+/* Pre:  Tree is non-empty; K supports operator<.
+ * Post: Returns the data associated with the maximum key. Throws if tree is empty. */
 {
-    if (n == nullptr) return best;
-    if (n->data < best) best = n->data;
-    best = min_data_rec(n->left,  best);
-    best = min_data_rec(n->right, best);
-    return best;
-}
-
-template <typename D, typename K>
-D BST<D,K>::max_data_rec(Node* n, D best)
-/* Pre:  n is a pointer to a node in this BST (or nullptr). D supports operator<.
- * Post: Returns the maximum value among data fields in the subtree rooted at n (or best if n == nullptr). Does not modify the tree. */
-{
-    if (n == nullptr) return best;
-    if (best < n->data) best = n->data;
-    best = max_data_rec(n->left,  best);
-    best = max_data_rec(n->right, best);
-    return best;
-}
-
-template <typename D, typename K>
-D BST<D,K>::max_data()
-/* Pre:  Tree is non-empty; D supports operator< for comparisons.
- * Post: Returns the maximum data value stored anywhere in the BST; tree is not modified. Throws if tree is empty. */
-{
-    if (root == nullptr) {
-        throw std::runtime_error("max_data() called on an empty BST");
+    if (root == nullptr) { throw "max_data() called on an empty BST"; }
+    Node* cur = root;
+    while (cur->right != nullptr) {
+        cur = cur->right;
     }
-    return max_data_rec(root, root->data);
+    return cur->data;
 }
 
 template <typename D, typename K>
@@ -168,14 +146,16 @@ K BST<D,K>::max_key()
 }
 
 template <typename D, typename K>
-D BST<D,K>::min_data()
-/* Pre:  Tree is non-empty; D supports operator< for comparisons.
- * Post: Returns the minimum data value stored anywhere in the BST; tree is not modified. Throws if tree is empty. */
+K BST<D,K>::min_data()
+/* Pre:  Tree is non-empty; K supports operator>.
+ * Post: Returns the data associated with the minimum key. Throws if tree is empty. */
 {
-    if (root == nullptr) {
-        throw std::runtime_error("min_data() called on an empty BST");
+    if (root == nullptr) { throw "min_key() called on an empty BST"; }
+    Node* cur = root;
+    while (cur->left != nullptr) {
+        cur = cur->left;
     }
-    return min_data_rec(root, root->data);
+    return cur->data;
 }
 
 template <typename D, typename K>
