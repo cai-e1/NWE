@@ -1,4 +1,3 @@
-
 #include <sstream>
 #include "bst.h"
 #include <string>
@@ -8,13 +7,19 @@
 using namespace std;
 
 template <typename D, typename K>
-BST<D,K>::BST(){
+BST<D,K>::BST()
+/* Pre:  None.
+ * Post: Constructs an empty BST with root == nullptr. */
+{
     root = nullptr;
 };
 
 
 template <typename D, typename K>
-BST<D,K>::~BST(){
+BST<D,K>::~BST()
+/* Pre:  This BST object exists.
+ * Post: All dynamically allocated nodes reachable from root are deallocated. */
+{
     // Node* x = root;
     // if (x !=nullptr) {
     //     ~BST(x->left);
@@ -25,7 +30,10 @@ BST<D,K>::~BST(){
 
 
 template <typename D, typename K>
-BST<D,K>::BST (const BST<D,K> & rbst){
+BST<D,K>::BST (const BST<D,K> & rbst)
+/* Pre:  rbst is a valid BST.
+ * Post: Initializes this BST with rbst.root (shallow copy of pointer). */
+{
 //     Node* x = root;
 //     if x !=nullptr {
 //         BST(x.left);
@@ -38,13 +46,19 @@ BST<D,K>::BST (const BST<D,K> & rbst){
 
 
 template <typename D, typename K>
-bool BST<D,K>::empty(){
+bool BST<D,K>::empty()
+/* Pre:  None.
+ * Post: Returns true iff root == nullptr. Tree is not modified. */
+{
     return (this->root == nullptr);
 };
 
 
 template <typename D, typename K>
-void BST<D,K>::insert(D data, K key){
+void BST<D,K>::insert(D data, K key)
+/* Pre:  Keys are comparable with operator< and operator==; BST property holds for existing nodes.
+ * Post: A new node containing (data, key) is inserted so that the BST property is preserved. */
+{
     Node* z = new Node(data, key);
     Node* y = nullptr;
     Node* x = root;
@@ -76,7 +90,10 @@ void BST<D,K>::insert(D data, K key){
 };
 
 template <typename D, typename K>
-D BST<D,K>::get(K k){
+D BST<D,K>::get(K k)
+/* Pre:  Keys in the tree are comparable with k.
+ * Post: Returns data stored at the node with key == k if found; otherwise returns default-constructed D(). Tree is unchanged. */
+{
     Node* temp = root;
     while (temp!=nullptr){
         if (temp->key == k){
@@ -93,14 +110,20 @@ D BST<D,K>::get(K k){
 };
 
 template <typename D, typename K>
-void BST<D,K>::remove(K k){
+void BST<D,K>::remove(K k)
+/* Pre:  Keys are comparable and the BST property holds.
+ * Post: If a node with key k exists, it is removed and the BST property is preserved; otherwise the tree is unchanged. */
+{
     Node* temp = search_key(k);
     if (temp!=nullptr){
         remove_helper(temp);}
 };
 
 template <typename D, typename K>
-D BST<D,K>::min_data_rec(Node* n, D best) {
+D BST<D,K>::min_data_rec(Node* n, D best)
+/* Pre:  n is a pointer to a node in this BST (or nullptr). D supports operator<.
+ * Post: Returns the minimum value among data fields in the subtree rooted at n (or best if n == nullptr). Does not modify the tree. */
+{
     if (n == nullptr) return best;
     if (n->data < best) best = n->data;
     best = min_data_rec(n->left,  best);
@@ -109,7 +132,10 @@ D BST<D,K>::min_data_rec(Node* n, D best) {
 }
 
 template <typename D, typename K>
-D BST<D,K>::max_data_rec(Node* n, D best) {
+D BST<D,K>::max_data_rec(Node* n, D best)
+/* Pre:  n is a pointer to a node in this BST (or nullptr). D supports operator<.
+ * Post: Returns the maximum value among data fields in the subtree rooted at n (or best if n == nullptr). Does not modify the tree. */
+{
     if (n == nullptr) return best;
     if (best < n->data) best = n->data;
     best = max_data_rec(n->left,  best);
@@ -118,7 +144,10 @@ D BST<D,K>::max_data_rec(Node* n, D best) {
 }
 
 template <typename D, typename K>
-D BST<D,K>::max_data() {
+D BST<D,K>::max_data()
+/* Pre:  Tree is non-empty; D supports operator< for comparisons.
+ * Post: Returns the maximum data value stored anywhere in the BST; tree is not modified. Throws if tree is empty. */
+{
     if (root == nullptr) {
         throw std::runtime_error("max_data() called on an empty BST");
     }
@@ -126,7 +155,10 @@ D BST<D,K>::max_data() {
 }
 
 template <typename D, typename K>
-K BST<D,K>::max_key() {
+K BST<D,K>::max_key()
+/* Pre:  Tree is non-empty; K supports operator<.
+ * Post: Returns the maximum key present in the BST (rightmost node). Throws if tree is empty. */
+{
     if (root == nullptr) { throw "max_key() called on an empty BST"; }
     Node* cur = root;
     while (cur->right != nullptr) {
@@ -136,7 +168,10 @@ K BST<D,K>::max_key() {
 }
 
 template <typename D, typename K>
-D BST<D,K>::min_data() {
+D BST<D,K>::min_data()
+/* Pre:  Tree is non-empty; D supports operator< for comparisons.
+ * Post: Returns the minimum data value stored anywhere in the BST; tree is not modified. Throws if tree is empty. */
+{
     if (root == nullptr) {
         throw std::runtime_error("min_data() called on an empty BST");
     }
@@ -144,7 +179,10 @@ D BST<D,K>::min_data() {
 }
 
 template <typename D, typename K>
-K BST<D,K>::min_key() {
+K BST<D,K>::min_key()
+/* Pre:  Tree is non-empty; K supports operator<.
+ * Post: Returns the minimum key present in the BST (leftmost node). Throws if tree is empty. */
+{
     if (root == nullptr) { throw "min_key() called on an empty BST"; }
     Node* cur = root;
     while (cur->left != nullptr) {
@@ -154,7 +192,10 @@ K BST<D,K>::min_key() {
 }
 
 template <typename D, typename K>
-K BST<D,K>::successor(K key){
+K BST<D,K>::successor(K key)
+/* Pre:  Keys are comparable; BST property holds.
+ * Post: Returns the key that immediately follows 'key' in in-order traversal, or default-constructed K() if none exists or key not found. Tree is unchanged. */
+{
     Node* x = search_key(key);
 
     if (x == nullptr || x->key == max_key()) {
@@ -177,7 +218,10 @@ K BST<D,K>::successor(K key){
 };
 
 template <typename D, typename K>
-string BST<D,K>::in_order(){
+string BST<D,K>::in_order()
+/* Pre:  None.
+ * Post: Returns a space-separated string of keys in in-order traversal with a trailing space removed. Tree is unchanged. */
+{
     string ss;
 
     ss = inorder_helper(root);
@@ -187,12 +231,18 @@ string BST<D,K>::in_order(){
 };
 
 template <typename D, typename K>
-void BST<D,K>::trim (K low, K high){
+void BST<D,K>::trim (K low, K high)
+/* Pre:  Keys are comparable; low and high define an inclusive range (low <= high not enforced by code).
+ * Post: Removes any nodes with key < low or key > high; remaining tree preserves BST property. */
+{
     root = trim_helper(root, low, high);
 };
 
 template <typename D, typename K>
-string BST<D,K>::to_string(){
+string BST<D,K>::to_string()
+/* Pre:  None.
+ * Post: Returns a space-separated string of keys in level-order (BFS), with trailing space removed. Tree is unchanged. */
+{
     string ss;
 
     ss = to_string_helper(root);
@@ -202,7 +252,10 @@ string BST<D,K>::to_string(){
 };
 
 template <typename D, typename K>
-void BST<D, K>::clear(Node* node) {
+void BST<D, K>::clear(Node* node)
+/* Pre:  node is a pointer to a node in this BST (or nullptr).
+ * Post: Recursively deallocates the subtree rooted at node. */
+{
     if (node != nullptr) {
         clear(node->left);
         clear(node->right);
@@ -211,7 +264,10 @@ void BST<D, K>::clear(Node* node) {
 };
 
 template <typename D, typename K>
-string BST<D, K>::to_string_helper(Node* node) {
+string BST<D, K>::to_string_helper(Node* node)
+/* Pre:  node is a pointer to the root of a (sub)tree (may be nullptr).
+ * Post: Returns a space-separated string of keys produced by a BFS starting at node. Tree is unchanged. */
+{
     stringstream ss;
     queue<Node*> temp;
     temp.push(node);
@@ -232,7 +288,10 @@ string BST<D, K>::to_string_helper(Node* node) {
 };
 
 template <typename D, typename K>
-string BST<D, K>::inorder_helper(Node* node) {
+string BST<D, K>::inorder_helper(Node* node)
+/* Pre:  node is a pointer to the root of a (sub)tree (may be nullptr).
+ * Post: Returns a space-separated string of keys produced by an in-order traversal of the subtree rooted at node. Tree is unchanged. */
+{
     stringstream ss;
 
     Node* curr = node;
@@ -246,7 +305,10 @@ string BST<D, K>::inorder_helper(Node* node) {
 }
 
 template <typename D, typename K>
-typename BST<D,K>::Node* BST<D,K>::search_key(K k){
+typename BST<D,K>::Node* BST<D,K>::search_key(K k)
+/* Pre:  Keys in the tree are comparable with k.
+ * Post: Returns a pointer to the node whose key == k if found; otherwise returns nullptr. Tree is unchanged. */
+{
     Node* temp = root;
     while (temp!=nullptr){
         if (temp->key == k){
@@ -264,7 +326,10 @@ typename BST<D,K>::Node* BST<D,K>::search_key(K k){
 }
 
 template <typename D, typename K>
-void BST<D,K>::remove_helper(Node* temp){
+void BST<D,K>::remove_helper(Node* temp)
+/* Pre:  temp points to a node currently in this BST.
+ * Post: Removes the node pointed to by temp. BST property is preserved. */
+{
     //no children
     if ((temp->left ==nullptr)&&(temp->right==nullptr)){
         if (temp->p == nullptr){root = nullptr;}
@@ -310,7 +375,10 @@ void BST<D,K>::remove_helper(Node* temp){
 }
 
 template <typename D, typename K>
-typename BST<D,K>::Node* BST<D, K>::trim_helper(Node* node, K low, K high){
+typename BST<D,K>::Node* BST<D, K>::trim_helper(Node* node, K low, K high)
+/* Pre:  Keys are comparable; low and high specify an inclusive range.
+ * Post: Returns the root of a subtree equal to the original subtree but with nodes outside [low, high] removed; BST property preserved. */
+{
 
     if (node == nullptr) {
         return nullptr;
