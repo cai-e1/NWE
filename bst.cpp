@@ -294,11 +294,10 @@ string BST<D, K>::inorder_helper(Node* node)
 {
     stringstream ss;
 
-    Node* curr = node;
-    if (curr != nullptr) {
-        inorder_helper(curr->left);
-        ss << curr->key << " ";
-        inorder_helper(curr->right); 
+    if (node != nullptr) {
+        ss << inorder_helper(node->left);
+        ss << node->key << " ";
+        ss << inorder_helper(node->right); 
     }
 
     return ss.str();
