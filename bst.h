@@ -31,9 +31,6 @@ private:
     // BST Atrributes
     Node* root;
 
-    // BST Min/Max Recursive Functions
-    D min_data_rec(Node* n, D best);
-    D max_data_rec(Node* n, D best);
 
 public:
 
