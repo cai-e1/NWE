@@ -119,125 +119,125 @@ void test_remove()
     }
 }
 
-// void test_max_data()
-// {
-//     try
-//     {
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         string max_str = balanced_bst.max_data();
-//         if (max_str != "10 data")
-//         {
-//             cout << "Incorrect result of max_data. Expected \"10 data\" but got : " << max_str << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in determining data of max node in bst : " << e.what() << endl;
-//     }
-// }
+void test_max_data()
+{
+    try
+    {
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        string max_str = balanced_bst.max_data();
+        if (max_str != "10 data")
+        {
+            cout << "Incorrect result of max_data. Expected \"10 data\" but got : " << max_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining data of max node in bst : " << e.what() << endl;
+    }
+}
 
-// void test_max_key()
-// {
-//     try
-//     {
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         int max_k = balanced_bst.max_key();
-//         if (max_k != 10)
-//         {
-//             cout << "Incorrect result of max_key. Expected 10 but got : " << max_k << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in determining key of max node in bst : " << e.what() << endl;
-//     }
-// }
+void test_max_key()
+{
+    try
+    {
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        int max_k = balanced_bst.max_key();
+        if (max_k != 10)
+        {
+            cout << "Incorrect result of max_key. Expected 10 but got : " << max_k << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining key of max node in bst : " << e.what() << endl;
+    }
+}
 
-// void test_min_data()
-// {
-//     try
-//     {
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         string min_str = balanced_bst.min_data();
-//         if (min_str != "1 data")
-//         {
-//             cout << "Incorrect result of min_data. Expected \"1 data\" but got : " << min_str << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in determining data of min node in bst : " << e.what() << endl;
-//     }
-// }
+void test_min_data()
+{
+    try
+    {
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        string min_str = balanced_bst.min_data();
+        if (min_str != "1 data")
+        {
+            cout << "Incorrect result of min_data. Expected \"1 data\" but got : " << min_str << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining data of min node in bst : " << e.what() << endl;
+    }
+}
 
-// void test_min_key()
-// {
-//     try
-//     {
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         int min_k = balanced_bst.min_key();
-//         if (min_k != 1)
-//         {
-//             cout << "Incorrect result of min_key. Expected 10 but got : " << min_k << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in determining key of min node in bst : " << e.what() << endl;
-//     }
-// }
+void test_min_key()
+{
+    try
+    {
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        int min_k = balanced_bst.min_key();
+        if (min_k != 1)
+        {
+            cout << "Incorrect result of min_key. Expected 10 but got : " << min_k << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining key of min node in bst : " << e.what() << endl;
+    }
+}
 
-// void test_successor()
-// {
-//     try
-//     {
-//         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-//         BST<string, int> balanced_bst;
-//         for (int i = 0; i < 10; i++)
-//         {
-//             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
-//         }
-//         int succ = balanced_bst.successor(4);
-//         if (succ != 5)
-//         {
-//             cout << "Incorrect result of successor of 4. Expected 5 but got : " << succ << endl;
-//         }
-//         succ = balanced_bst.successor(7);
-//         if (succ != 8)
-//         {
-//             cout << "Incorrect result of successor of 7. Expected 8 but got : " << succ << endl;
-//         }
-//         succ = balanced_bst.successor(10);
-//         if (succ != 0)
-//         {
-//             cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error in determining successor in bst : " << e.what() << endl;
-//     }
-// }
+void test_successor()
+{
+    try
+    {
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for (int i = 0; i < 10; i++)
+        {
+            balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
+        }
+        int succ = balanced_bst.successor(4);
+        if (succ != 5)
+        {
+            cout << "Incorrect result of successor of 4. Expected 5 but got : " << succ << endl;
+        }
+        succ = balanced_bst.successor(7);
+        if (succ != 8)
+        {
+            cout << "Incorrect result of successor of 7. Expected 8 but got : " << succ << endl;
+        }
+        succ = balanced_bst.successor(10);
+        if (succ != 0)
+        {
+            cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error in determining successor in bst : " << e.what() << endl;
+    }
+}
 
 // void test_in_order()
 // {
@@ -359,10 +359,10 @@ int main()
     test_insert();
     test_get();
     test_remove();
-    // test_max_data();
-    // test_max_key();
-    // test_min_data();
-    // test_min_key();
+    test_max_data();
+    test_max_key();
+    test_min_data();
+    test_min_key();
     // test_successor();
     // test_in_order();
     // test_trim();
