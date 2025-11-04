@@ -20,29 +20,9 @@ BST<D,K>::~BST()
 /* Pre:  This BST object exists.
  * Post: All dynamically allocated nodes reachable from root are deallocated. */
 {
-    // Node* x = root;
-    // if (x !=nullptr) {
-    //     ~BST(x->left);
-    //     delete [] x->key;
-    //     ~BST(x->right);
     clear(root);    
 };
 
-
-template <typename D, typename K>
-BST<D,K>::BST (const BST<D,K> & rbst)
-/* Pre:  rbst is a valid BST.
- * Post: Initializes this BST with rbst.root (shallow copy of pointer). */
-{
-//     Node* x = root;
-//     if x !=nullptr {
-//         BST(x.left);
-//         delete [] x.key;
-//         BST (x.right);
-//     }
-    root = rbst.root;
-
-};
 
 
 template <typename D, typename K>
