@@ -112,6 +112,64 @@ void test_insert()
         {
             cout << "Insert edge (duplicates inorder): expected 5 5 5 but got : " << dups_in << endl;
         }
+
+        //trying different combinations of datatypes to insert
+        BST<int, int> int_type;
+        int_type.insert(6, 5);
+        int_type.insert(7, 15);
+        int_type.insert(98, 52);
+        string int_type_ts = int_type.to_string();
+        if (int_type_ts != "5 15 52")
+        {
+            cout << "Insert edge: expected 5 15 2 but got : " << int_type_ts << endl;
+        }
+        int max_int_data = int_type.max_data();
+        if (max_int_data != 98){
+            cout << "Max data edge: expected 52 but got : " << max_int_data << endl;
+        }
+
+        BST<float, float> float_type;
+        float_type.insert(6.5, 5.895);
+        float_type.insert(139.329, 5.35);
+        float_type.insert(9.8, 5.362);
+        string float_type_ts = float_type.to_string();
+        if (float_type_ts != "5.895 5.35 5.362")
+        {
+            cout << "Insert edge: expected 5.895 5.35 5.362 but got : " << int_type_ts << endl;
+        }
+        float max_float_data = float_type.max_data();
+        if (max_float_data != 6.5){
+            cout << "Max data edge: expected 52 but got : " << max_float_data << endl;
+        }
+
+        BST<char, char> char_type;
+        char_type.insert('a', 'a');
+        char_type.insert('b', 'c');
+        char_type.insert('d', 'a');
+        string char_type_ts = char_type.to_string();
+        if (char_type_ts != "a c a")
+        {
+            cout << "Insert edge: expected a c a : " << char_type_ts << endl;
+        }
+        char min_char_data = char_type.min_data();
+        if (min_char_data != 'a'){
+            cout << "Min data edge: expected a but got : " << min_char_data << endl;
+        }
+
+        BST<string, string> string_type;
+        string_type.insert("all", "ball");
+        string_type.insert("back", "call");
+        string_type.insert("hi", "hello");
+        string string_type_ts = string_type.to_string();
+        if (string_type_ts != "ball call hello")
+        {
+            cout << "Insert edge: expected ball call hello : " << string_type_ts << endl;
+        }
+        string min_string_data = string_type.min_data();
+        if (min_string_data != "all"){
+            cout << "Min data edge: expected \"all\" but got : " << min_string_data << endl;
+        }
+
     }
     catch (exception &e)
     {
