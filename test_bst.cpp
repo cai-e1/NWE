@@ -226,14 +226,14 @@ void test_get()
             cout << "Incorrect get result from empty float bst. Expected 0.0 but got " << val2 << endl;
         }
         float ks2[6] = {(float)1.11, (float)2.22, (float)3.33, (float)4.44, (float)5.55, (float)6.66};
-        float num = (float)3.14;
+        float num = (float)3.00;
         for (int i = 0; i < 6; i++) {
             bst2.insert(num, ks2[i]);
             num += 1.0;
         }
 
         val2 = bst2.get((float)4.44);
-        if (val2 != 6.14) {
+        if (val2 != (float)6.00) {
             cout << "Incorrect get result from float bst. Expected '6.14' but got " << val2 << endl;
         }
 
