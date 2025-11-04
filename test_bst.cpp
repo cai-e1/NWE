@@ -211,7 +211,7 @@ void test_get()
         if(val1!="") {
             cout << "Incorrect get result from empty string bst. Expected 0 but got " << val1 << endl;
         }
-        string ks1[10] = {"e", "b", "c", "d", "a", "f", "g", "h", "i", "j"};
+        string ks1[10] = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
         for(int i = 0; i < 10; i++) {
             bst1.insert("hi", ks1[i]);
         }
