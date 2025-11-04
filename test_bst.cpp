@@ -206,82 +206,52 @@ void test_get()
             cout << "Incorrect get result. Expected \"v1\" but got : " << val << endl;
         }
 
-        BST<int, int> bst1;
-
-        // edge: get from empty -> default D()
-        string val1 = to_string(bst1.get(0));
-        if (val1 != "")
-        {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val1 << endl;
+        BST<string, string> bst1;
+        string val1 = bst1.get(" ");
+        if(val1!="") {
+            cout << "Incorrect get result from empty string bst. Expected 0 but got " << val1 << endl;
         }
-
-        // edge: missing key in non-empty -> default D()
-        int ks1[] = {4, 2, 6, 1, 3, 5, 7};
-        for (int k : ks1) bst1.insert(k + 1, k);
-
-        if (to_string(bst1.get(100)) != "")
-        {
-            cout << "Get edge: expected default for missing key 100." << endl;
+        string ks1[10] = {"e", "b", "c", "d", "a", "f", "g", "h", "i", "j"};
+        for(int i = 0; i < 10; i++) {
+            bst1.insert("hi", ks1[i]);
         }
-
-        // normal case
-        val1 = to_string(bst1.get(1));
-        if (val1 != "2")
-        {
-            cout << "Incorrect get result. Expected \"2\" but got : " << val1 << endl;
+        val1 = bst1.get("f");
+        if(val1!="hi") {
+            cout << "Incorrect get result from string bst. Expected 'hi' but got " << val1 << endl;
         }
 
         BST<float, float> bst2;
-
-        // edge: get from empty -> default D()
-        string val2 = to_string(bst2.get((float)0.00));
-        if (val2 != "")
-        {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val2 << endl;
+        float val2 = bst2.get((float)0.0);
+        if (val2 != (float)0.0) {
+            cout << "Incorrect get result from empty float bst. Expected 0.0 but got " << val2 << endl;
+        }
+        float ks2[6] = {(float)1.11, (float)2.22, (float)3.33, (float)4.44, (float)5.55, (float)6.66};
+        float num = (float)3.14;
+        for (int i = 0; i < 6; i++) {
+            bst2.insert(num, ks2[i]);
+            num += 1.0;
         }
 
-        // edge: missing key in non-empty -> default D()
-        float ks2[] = {(float)4.14, (float)2.12, (float)6.16, (float)1.11, (float)3.13, (float)5.15, (float)7.17};
-        for (int k : ks2) bst2.insert(float(k - 0.01), k);
-
-        if (to_string(bst2.get((float)100.00)) != "")
-        {
-            cout << "Get edge: expected default for missing key 100." << endl;
+        val2 = bst2.get((float)4.44);
+        if (val2 != 6.14) {
+            cout << "Incorrect get result from float bst. Expected '6.14' but got " << val2 << endl;
         }
 
-        // normal case
-        val2 = bst2.get((float)1.11);
-        if (val2 != "1.1")
-        {
-            cout << "Incorrect get result. Expected \"1.1\" but got : " << val2 << endl;
+        BST<int, int> bst3;
+        int val3 = bst3.get(0);
+        if (val3 != 0) {
+            cout << "Incorrect get result from empty int bdt. Expected 0 but got " << val3 << endl;
+        }
+        int ks3[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        for (int i = 0; i < 9; i++) {
+            bst3.insert(i, ks3[i]);
         }
 
-        BST<string, string> bst3;
-
-        // edge: get from empty -> default D()
-        string val3 = bst3.get(" ");
-        if (val3 != "")
-        {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val3 << endl;
+        val3 = bst3.get(8);
+        if (val3 != 7) {
+            cout << "Incorrect get result from int bst. Expected 7 but got " << val3 << endl;
         }
 
-        // edge: missing key in non-empty -> default D()
-        string ks3[] = {"4", "2", "6", "1", "3", "5", "7"};
-        for (int i = 0; i < 7; i++) {
-            bst3.insert("hello", ks3[i]);
-        }
-
-        if (bst3.get("100") != "")
-        {
-            cout << "Get edge: expected default for missing key 100." << endl;
-        }
-
-        // normal case
-        val3 = bst3.get("1");
-        if (val3 != "hello")
-        {
-            cout << "Incorrect get result. Expected \"hello\" but got : " << val3 << endl;
-        }
     }
     catch (exception &e)
     {
