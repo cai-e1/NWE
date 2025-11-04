@@ -147,6 +147,83 @@ void test_get()
         {
             cout << "Incorrect get result. Expected \"v1\" but got : " << val << endl;
         }
+
+        BST<int, int> bst1;
+
+        // edge: get from empty -> default D()
+        string val1 = to_string(bst1.get(0));
+        if (val1 != "")
+        {
+            cout << "Incorrect get result from empty bst. Expected 0 but got " << val1 << endl;
+        }
+
+        // edge: missing key in non-empty -> default D()
+        int ks1[] = {4, 2, 6, 1, 3, 5, 7};
+        for (int k : ks1) bst1.insert(k + 1, k);
+
+        if (to_string(bst1.get(100)) != "")
+        {
+            cout << "Get edge: expected default for missing key 100." << endl;
+        }
+
+        // normal case
+        val1 = to_string(bst1.get(1));
+        if (val1 != "2")
+        {
+            cout << "Incorrect get result. Expected \"2\" but got : " << val1 << endl;
+        }
+
+        BST<float, float> bst2;
+
+        // edge: get from empty -> default D()
+        string val2 = to_string(bst2.get((float)0.00));
+        if (val2 != "")
+        {
+            cout << "Incorrect get result from empty bst. Expected 0 but got " << val2 << endl;
+        }
+
+        // edge: missing key in non-empty -> default D()
+        float ks2[] = {(float)4.14, (float)2.12, (float)6.16, (float)1.11, (float)3.13, (float)5.15, (float)7.17};
+        for (int k : ks2) bst2.insert(float(k - 0.01), k);
+
+        if (to_string(bst2.get((float)100.00)) != "")
+        {
+            cout << "Get edge: expected default for missing key 100." << endl;
+        }
+
+        // normal case
+        val2 = bst2.get((float)1.11);
+        if (val2 != "1.1")
+        {
+            cout << "Incorrect get result. Expected \"1.1\" but got : " << val2 << endl;
+        }
+
+        BST<string, string> bst3;
+
+        // edge: get from empty -> default D()
+        string val3 = bst3.get(" ");
+        if (val3 != "")
+        {
+            cout << "Incorrect get result from empty bst. Expected 0 but got " << val3 << endl;
+        }
+
+        // edge: missing key in non-empty -> default D()
+        string ks3[] = {"4", "2", "6", "1", "3", "5", "7"};
+        for (int i = 0; i < 7; i++) {
+            bst3.insert("hello", ks3[i]);
+        }
+
+        if (bst3.get("100") != "")
+        {
+            cout << "Get edge: expected default for missing key 100." << endl;
+        }
+
+        // normal case
+        val3 = bst3.get("1");
+        if (val3 != "hello")
+        {
+            cout << "Incorrect get result. Expected \"hello\" but got : " << val3 << endl;
+        }
     }
     catch (exception &e)
     {
